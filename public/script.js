@@ -1,12 +1,13 @@
 const socket = io();
 const gameId = "game1"; // Unique game ID
 
-// Join the game
-socket.emit("joinGame", gameId);
-
 // DOM elements
 const cells = document.querySelectorAll(".cell");
 const statusDiv = document.getElementById("status");
+const restartButton = document.getElementById("restartButton");
+
+// Join the game
+socket.emit("joinGame", gameId);
 
 // Handle game state updates
 socket.on("gameState", (gameState) => {
@@ -26,10 +27,10 @@ function updateStatus(gameState) {
   if (gameState.winner) {
     statusDiv.textContent =
       gameState.winner === "draw"
-        ? "It's a draw!"
-        : `Player ${gameState.winner} wins!`;
+        ? "مساوی!"
+        : `بازیکن ${gameState.winner} برنده شد!`;
   } else {
-    statusDiv.textContent = `Current Player: ${gameState.currentPlayer}`;
+    statusDiv.textContent = `نوبت بازیکن: ${gameState.currentPlayer}`;
   }
 }
 
@@ -39,4 +40,9 @@ cells.forEach((cell) => {
     const index = cell.getAttribute("data-index");
     socket.emit("makeMove", gameId, parseInt(index));
   });
+});
+
+// Handle restart button click
+restartButton.addEventListener("click", () => {
+  socket.emit("restartGame", gameId);
 });

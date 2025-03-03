@@ -56,6 +56,21 @@ io.on("connection", (socket) => {
     }
   });
 
+  // Handle restart game
+  socket.on("restartGame", (gameId) => {
+    if (games[gameId]) {
+      // Reset game state
+      games[gameId] = {
+        board: Array(9).fill(null),
+        currentPlayer: "X",
+        winner: null,
+      };
+
+      // Broadcast the reset game state to all players in the room
+      io.to(gameId).emit("gameState", games[gameId]);
+    }
+  });
+
   // Handle disconnection
   socket.on("disconnect", () => {
     console.log("user disconnected:", socket.id);

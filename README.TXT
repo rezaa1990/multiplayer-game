@@ -8,3 +8,4 @@ How to Play:
 - Open the game in two different browsers or tabs.
 - Players take turns clicking on the cells to place their symbol (X or O).
 - The first player to get three in a row wins!
+- Click the "شروع مجدد بازی" button to restart the game.

@@ -27,3 +27,18 @@ body {
     margin-top: 20px;
     font-size: 20px;
 }
+
+#restartButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#restartButton:hover {
+    background-color: #45a049;
+}
